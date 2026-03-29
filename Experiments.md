@@ -66,3 +66,7 @@ NOTES:
 ## EXPERIMENT 8:
 MAE: 16680.276356164384
 - Ordinal encoding used with most stupid way.
+
+## EXPERIMENT 9:
+MAE: 16379.352240
+- Added Hyperparametrs to model and tested with SimpleImputer (but SimpleImputer didn't work in this model so it has removed).
