@@ -1,6 +1,8 @@
 import pandas as pd
-
+from sklearn.preprocessing import OneHotEncoder
 data = pd.read_csv("train.csv", index_col="Id")
+
+OH_encoder = OneHotEncoder(handle_unknown="ignore",sparse_output=False)
 
 columns = data.columns
 data["Electrical"] = data["Electrical"].fillna(data["Electrical"].mode()[0])
@@ -120,8 +122,10 @@ ordinals["PoolQC"] = ordinals["PoolQC"].map({
 data[categorical] = data[categorical].fillna("None")
 
 categorical_data = data[categorical]
-encoded_categorical_data = pd.get_dummies(categorical_data)
+# encoded_categorical_data = pd.get_dummies(categorical_data)
+OH_encoded_categorical_data = pd.DataFrame(OH_encoder.fit_transform(categorical_data), index=categorical_data.index,columns=OH_encoder.get_feature_names_out(categorical_data.columns))
 target = data["SalePrice"]
 
+
 # merged_encoded_data = pd.merge(encoded_categorical_data,ordinals,on="Id")
-merged_encoded_data = pd.concat([encoded_categorical_data, ordinals], axis=1)
+merged_encoded_data = pd.concat([OH_encoded_categorical_data, ordinals], axis=1)

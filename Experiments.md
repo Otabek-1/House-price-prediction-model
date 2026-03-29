@@ -70,3 +70,7 @@ MAE: 16680.276356164384
 ## EXPERIMENT 9:
 MAE: 16379.352240
 - Added Hyperparametrs to model and tested with SimpleImputer (but SimpleImputer didn't work in this model so it has removed).
+
+## EXPERIMENT 10:
+MAE: 16379.352240078353
+- Used OH_encoding but no changes.
